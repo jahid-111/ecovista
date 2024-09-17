@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 const SwitcherLocation = () => {
   const [isList, setIsList] = useState(false);
   const [list, setList] = useState([]);
-  console.log(list[0]);
+
   useEffect(() => {
     async function getList() {
       try {
@@ -24,28 +24,41 @@ const SwitcherLocation = () => {
 
   return (
     <div className="relative">
-      <button>
-        <Image
+      <div className=" flex justify-center items-center gap-4">
+        <button>
+          <Image
+            className="size-9"
+            src="/assets/icons/location.svg"
+            alt="link icon"
+            height={200}
+            width={200}
+          />
+        </button>
+
+        <button
           onClick={() => setIsList(!isList)}
-          className="size-9"
-          src="/assets/icons/link.svg"
-          alt="link icon"
-          height={200}
-          width={200}
-        />
-      </button>
+          className=" flex justify-center items-center gap-2
+        "
+        >
+          <Image
+            className="size-9 hover:bg-re"
+            src="/assets/icons/switch.svg"
+            alt="link icon"
+            height={200}
+            width={200}
+          />
+          <h2 className=" text-white font-semibold">Switch</h2>
+        </button>
+      </div>
 
       {isList && (
-        <div className="absolute left-0 top-12 z-[999] w-full min-w-[280px] rounded-md bg-white p-4 shadow max-md:-translate-x-1/2">
-          <ul
-            role="list"
-            className="divide-y divide-gray-100 [&>*]:py-2 [&>li]:cursor-pointer"
-          >
-            {list[0].map((location) => (
+        <div className="absolute h-48 overflow-scroll left-0 top-12 z-[999] w-full mx-auto min-w-[280px] rounded-md bg-white p-4 shadow max-md:-translate-x-2/5">
+          <ul className="divide-y divide-gray-100 [&>*]:py-2 [&>li]:cursor-pointer">
+            {list[0]?.map((location) => (
               <li key={location?.location}>
                 <Link
                   href={`/${location?.location}?latitude=${location?.latitude}&longitude=${location?.longitude}`}
-                  className=" bg-green-300 hover:bg-red-200"
+                  className=" text-5xl "
                 >
                   {location?.location}
                 </Link>
